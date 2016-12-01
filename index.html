@@ -22,7 +22,7 @@ $(document).ready(function(){
         resultDiv.innerHTML="";
         var titleBox=document.getElementById("title").value;
         var yearBox=document.getElementById("year").value;
-        $.getJSON("http://www.omdbapi.com/?t="+titleBox+"&y="+yearBox+"&plot=short&r=json", function(result){
+        $.getJSON("https://www.omdbapi.com/?t="+titleBox+"&y="+yearBox+"&plot=short&r=json", function(result){
             
             
             result.shadiNumber=5;    
