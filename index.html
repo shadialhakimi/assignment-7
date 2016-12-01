@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+.qustion
+    {
+        border-width: 5px;
+        border-style: solid;
+    }
+    #result {
+        
+        margin: 30px;
+    }
+
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+   
+    $("button").click(function(){
+        var resultDiv= document.getElementById("result");
+        resultDiv.innerHTML="";
+        var titleBox=document.getElementById("title").value;
+        var yearBox=document.getElementById("year").value;
+        $.getJSON("http://www.omdbapi.com/?t="+titleBox+"&y="+yearBox+"&plot=short&r=json", function(result){
+            
+            
+            result.shadiNumber=5;    
+            $.each(result, function(i, field){
+                
+                if (i==="Poster")
+                    {
+                        var image = document.createElement("img");
+                        image.id = "poster";
+                        image.className = "class";
+                        image.src = field;            // image.src = "IMAGE URL/PATH"
+                        resultDiv.appendChild(image);
+                        $("#result").append("<br>");
+                        
+                        
+                    }
+                else
+                    {
+                $("#result").append("<b>"+i+"</b>: "+field + " "+"<br>");
+                    }
+            });
+         });
+    });
+});
+</script>
+</head>
+<body>
+    
+    <div class="qustion">
+    <h2>Search Form</h2>
+    <span>Title</span>
+ <input type='text' name='title' id="title">
+    <span>Year</span>
+<input type='text' name='Year' id="year">
+<button>Get JSON data</button>
+    <br>
+    <br>
+    </div>
+
+<div id="result">
+    
+   
+</div>
+
+</body>
+</html>
